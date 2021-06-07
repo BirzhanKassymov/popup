@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="public/style.css">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
+    <style>
+        [x-cloak] {
+            display: none;
+        }
+    </style>
+
+    <title>Document</title>
+</head>
+<body
+        x-data="{openModal: false, openResult: false}"
+        class="antialiased"
+>
+
+<div class="relative min-h-screen">
+    <div
+            x-show="openModal"
+            x-transition:enter="transition ease-liner duration-700"
+            x-transition:leave="transition ease-liner duration-700"
+            class="fixed inset-0 flex items-center justify-center z-10"
+    >
+
+        <div
+                @click="openModal = !openModal"
+                x-cloak=""
+                x-show="openModal"
+
+                x-transition:enter="transition ease-liner duration-400"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+
+                x-transition:leave="transition ease-liner duration-400"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                class="absolute inset-0 bg-gray-500 bg-opacity-50"
+        ></div>
+
+        <div
+                x-cloak=""
+                x-show="openModal"
+
+                x-transition:enter="transition ease-liner duration-700"
+                x-transition:enter-start="opacity-0 transform translate-y-20"
+                x-transition:enter-end="opacity-1 transform translate-y-0"
+
+                x-transition:leave="transition ease-liner duration-700"
+                x-transition:leave-start="opacity-1 transform translate-y-0"
+                x-transition:leave-end="opacity-0 transform translate-y-20"
+                class="relative px-6 py-8 w-full h-screen sm:h-auto sm:max-w-lg bg-white lg:rounded-3xl z-20"
+        >
+            <button
+                    @click="openModal = !openModal"
+                    class="absolute top-0 right-5 text-red-600 text-4xl focus:outline-none">
+                &times;
+            </button>
+
+            <h1 class="text-lg lg:text-2xl font-bold"> Налоговый вычет</h1>
+
+            <p class="mt-4 text-sm text-gray-300 leading-5">
+                Используйте налоговый вычет чтобы погасить ипотеку досрочно.  Размер налогового вычета составляет не более 13% от своего официального годового дохода.
+            </p>
+
+            <form action="" class="mt-6 h-full">
+
+                <div class="flex flex-col space-y-3">
+                    <label for="1" class="text-sm font-medium">
+                        Ваша зарплата в месяц
+                    </label>
+
+                    <input
+                            id="1"
+                            type="text"
+                            placeholder="Введите данные"
+                            class="px-3 py-2 border rounded-md focus:outline-none"
+                    >
+
+                </div>
+
+                <button
+                        @click.prevent="openResult = !openResult"
+                        class="text-sm text-red-600 font-medium focus:outline-none">
+                    Рассчитать
+                </button>
+
+                <div
+                        x-show="openResult"
+                        class="mt-4">
+                    <h2 class="text-sm font-medium">
+                        Итого можете внести в качестве досрочных:
+                    </h2>
+
+                    <ul>
+                        <li class="py-4 border-b">
+                            <input id="test-1" type="checkbox" class="red-checkbox">
+                            <label for="test-1" class="font-semibold cursor-pointer">78 000 рублей в 1-ый год</label>
+                        </li>
+                        <li class="py-4 border-b">
+                            <input id="test-2" type="checkbox" class="red-checkbox">
+                            <label for="test-2" class="font-semibold cursor-pointer">78 000 рублей в 1-ый год</label>
+                        </li>
+                        <li class="py-4 border-b">
+                            <input id="test-3" type="checkbox" class="red-checkbox">
+                            <label for="test-3" class="font-semibold cursor-pointer">78 000 рублей в 1-ый год</label>
+
+                        </li>
+                        <li class="py-4 border-b">
+                            <input id="test-4" type="checkbox" class="red-checkbox">
+                            <label for="test-4" class="font-semibold cursor-pointer">78 000 рублей в 1-ый год</label>
+
+                        </li>
+                        <li class="py-4 border-b">
+                            <input id="test-5" type="checkbox" class="red-checkbox">
+                            <label for="test-5" class="font-semibold cursor-pointer">78 000 рублей в 1-ый год</label>
+                        </li>
+                    </ul>
+
+                </div>
+
+                <div class="flex items-center mt-7 space-x-3">
+                    <span class="text-sm font-medium">Что уменьшаем?</span>
+
+                    <button class="px-3 py-2 rounded-2xl bg-red-600  text-sm text-white font-medium focus:outline-none">
+                        Платёж
+                    </button>
+
+                    <button class="px-3 py-2 rounded-2xl bg-gray-200 text-sm font-medium focus:outline-none">
+                        Срок
+                    </button>
+                </div>
+
+                <div class="absolute bottom-8 inset-x-5 lg:mt-12">
+                    <button
+                            class=" w-full py-3 bg-red-600 text-white rounded-md hover:bg-red-500 transform hover:scale-105
+                            transition-transform ease-linear duration-400 focus:scale-100 focus:outline-none"
+                            style="box-shadow: 0 0 24px rgba(234, 0, 41, 0.33);"
+                    >
+                        Добавить
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+
+    <div class="absolute inset-0 flex items-center justify-center p-10 bg-red-500">
+        <button
+                @click="openModal = !openModal"
+                class="px-8 py-2 text-white focus:outline-none border border-white rounded-md
+                 hover:bg-white hover:text-black transition-all ease-linear duration-400"
+        >
+            Досрочный платёж
+        </button>
+    </div>
+</div>
+
+</body>
+</html>
